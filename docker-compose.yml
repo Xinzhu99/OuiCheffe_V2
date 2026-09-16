@@ -1,0 +1,28 @@
+services:
+  db:
+    image: postgres:16
+    restart: always
+    environment:
+      POSTGRES_USER: ouicheffe
+      POSTGRES_PASSWORD: ouicheffe
+      POSTGRES_DB: ouicheffe
+    ports:
+      - "5432:5432"
+      #volume fait persister les données stockées dans le local meme après l'arrêt du container
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  back:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    restart: always
+    env_file:
+      - ./backend/.env
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+volumes:
+  pgdata:

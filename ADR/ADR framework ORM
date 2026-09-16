@@ -1,0 +1,73 @@
+# ADR-002 : Choix de l'ORM
+
+## Statut
+Validé
+
+## Date
+2026-08-21
+
+## Contexte
+
+Le backend du projet OuiCheffe est développé en Python. Un accès structuré à la base de données PostgreSQL est nécessaire pour manipuler les tables du MLD
+(recettes, ingrédients, listes de courses, brigades) sans écrire chaque requête
+SQL manuellement à la main.
+
+Le projet contient des requêtes croisant plusieurs tables (ex : récupérer les
+ingrédients d'une liste de courses en croisant `selected_recipes`,
+`recipe_ingredients`, `ingredients` et `customized_items`), ce qui nécessite un
+outil capable de gérer des jointures sans devenir illisible.
+
+## Options envisagées
+
+### Option 1 : SQL brut (sans ORM)
+- **Avantages** :
+  - Contrôle total sur les requêtes générées
+  - Pas de couche d'abstraction supplémentaire à apprendre
+- **Inconvénients** :
+  - Plus lent à écrire, surtout pour les requêtes avec jointures multiples
+
+
+### Option 2 : Django ORM
+- **Avantages** :
+  - Très haut niveau, beaucoup d'automatisation
+  - Large documentation et communauté
+- **Inconvénients** :
+  - Fortement couplé au framework Django (moins pertinent si Flask ou FastAPI
+    est utilisé)
+  - Requêtes générées parfois peu transparentes, ce qui complique le débogage
+    pour une développeuse débutante
+
+### Option 3 : SQLAlchemy
+- **Avantages** :
+  - Reste proche de la logique SQL classique (peu de "magie" cachée),
+    cohérent avec la philosophie de Drizzle déjà connue en TypeScript
+  - Permet de traduire directement le MLD déjà conçu en modèles Python
+  - Utilisable avec n'importe quel framework Python (Flask, FastAPI)
+- **Inconvénients** :
+  - Plus verbeux que Django ORM pour les cas simples
+  - Nécessite un temps d'apprentissage de sa syntaxe 
+
+## Décision
+
+L'ORM retenu est **SQLAlchemy**.
+
+Justification :
+- Permet d'avancer plus vite qu'en SQL brut tout en gardant une bonne
+  compréhension des requêtes générées, sans trop s'éloigner du SQL
+- Cohérent avec l'approche déjà connue de Drizzle (proche du SQL) et avec le
+  travail de modélisation déjà réalisé sur le MLD
+
+## Conséquences
+
+### Positives
+- Gain de temps sur les requêtes impliquant plusieurs tables (jointures)
+- Réutilisation directe des relations définies dans le MLD sous forme de
+  modèles Python
+
+### Négatives / points de vigilance
+- Temps d'apprentissage de la syntaxe SQLAlchemy (modèles, sessions, relations)
+- Risque de générer des requêtes peu optimisées si les relations sont mal
+  déclarées, à vérifier notamment sur les jointures complexes du projet
+
+## Liens
+- Documentation officielle SQLAlchemy : https://docs.sqlalchemy.org/

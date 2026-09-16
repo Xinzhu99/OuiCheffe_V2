@@ -1,0 +1,69 @@
+# ADR-001 : Choix du framework frontend
+
+## Statut
+Validé
+
+## Date
+2026-08-21
+
+## Contexte
+
+Dans le cadre du projet OuiCheffe, il est nécessaire de choisir un framework
+frontend pour développer l'interface utilisateur (gestion des listes de courses,
+recettes, brigades). Le projet est réalisé en solo dans le cadre d'une certification RNCP, avec un niveau débutant en développement frontend.
+
+L'application nécessite une interface réactive : les actions de l'utilisateur
+(cocher un ingrédient, ajouter une recette à sa liste, modifier une quantité)
+doivent se refléter immédiatement à l'écran sans rechargement de page. Un
+framework JS orienté composants est donc nécessaire plutôt qu'une approche
+HTML/JS classique.
+
+## Options envisagées
+
+### Option 1 : React
+- **Avantages** :
+  - Bases déjà vues lors des projets en M1
+  - Très répandu, forte communauté et grand volume de ressources
+  - Puissant et flexible pour gérer soi-même l'architecture de l'application
+- **Inconvénients** :
+  - Syntaxe verbeuse (JSX, hooks)
+  - Gestion de l'état plus complexe à mettre en place pour une débutante
+
+### Option 2 : Vue.js
+- **Avantages** :
+  - Prise en main rapide, syntaxe proche du HTML classique
+  - Gestion de l'état plus simple et progressive (via Pinia)
+  - Documentation officielle claire, orientée débutants
+- **Inconvénients** :
+  - Nouvelle stack à apprendre entièrement
+  - Communauté et volume de ressources plus restreints que React,
+    notamment en français
+
+## Décision
+
+Le framework retenu est **Vue.js**.
+
+Justification :
+- Syntaxe et courbe d'apprentissage adaptées à un niveau débutant, permettant
+  de rester concentrée sur la logique métier de OuiCheffe plutôt que sur la
+  complexité du framework
+- Opportunité d'apprendre un nouveau framework dans le cadre de la certification
+
+## Conséquences
+
+### Positives
+- Rapidité de montée en compétence, donc plus de temps disponible pour le
+  développement des fonctionnalités métier (listes, recettes, brigades)
+- Moins de temps perdu sur la syntaxe comparé à React
+
+### Négatives / points de vigilance
+- Moins de ressources et de tutoriels disponibles en français que pour React
+- Risque de ralentissement en cas de blocage technique, sans collègue référent
+  sur Vue en interne à ISKernel
+
+### Impact sur les décisions futures
+- Ce choix oriente le futur ADR sur la gestion d'état : Vue permet l'usage de
+  Pinia, particulièrement adapté aux besoins de OuiCheffe où plusieurs données
+  sont partagées entre composants (liste de courses active, brigade active,
+  utilisateur connecté)
+

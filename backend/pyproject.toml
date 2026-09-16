@@ -1,0 +1,24 @@
+[project]
+name = "ouicheffe-back"
+version = "0.1.0"
+description = "Add your description here"
+authors = [
+    { name = "Xinzhu99", email = "jxinzhu@gmail.com" }
+]
+requires-python = ">=3.10"
+dependencies = [
+    "alembic>=1.20.0",
+    "fastapi>=0.141.1",
+    "fastapi-users[sqlalchemy]>=15.0.5",
+    "psycopg2-binary>=2.9.13",
+    "python-dotenv>=1.2.3",
+    "sqlalchemy>=2.0.52",
+    "uvicorn[standard]>=0.53.0",
+]
+
+[project.scripts]
+ouicheffe-back = "ouicheffe_back:main"
+
+[build-system]
+requires = ["uv_build>=0.12.13,<0.13.0"]
+build-backend = "uv_build"
