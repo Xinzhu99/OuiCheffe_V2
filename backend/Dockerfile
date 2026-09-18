@@ -16,6 +16,8 @@ RUN uv sync --frozen --no-dev --no-install-project
 
 #on copie le code source du projet dans le container
 COPY src ./src
+COPY alembic ./alembic
+COPY alembic.ini ./alembic.ini
 #on installe le code source par dessus les dépendence
 #maintenant on finit l'atelier et on a le résultat final dans le dossier .venv
 RUN uv sync --frozen --no-dev
@@ -28,6 +30,8 @@ WORKDIR /app
 COPY --from=builder /app/.venv /app/.venv
 
 COPY --from=builder /app/src ./src
+COPY --from=builder /app/alembic ./alembic
+COPY --from=builder /app/alembic.ini ./alembic.ini
 
 ENV PATH="/app/.venv/bin:$PATH"
 
