@@ -8,7 +8,7 @@ services:
       POSTGRES_DB: ouicheffe
     ports:
       - "5432:5432"
-      #volume fait persister les données stockées dans le local meme après l'arrêt du container
+      #volume fait persister les données stockées en dehors de cycle de vie container
     volumes:
       - pgdata:/var/lib/postgresql/data
 
