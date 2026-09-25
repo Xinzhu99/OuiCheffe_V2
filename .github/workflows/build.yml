@@ -1,0 +1,16 @@
+name: Docker Build Backend
+#on
+on: [push]          
+# jobs
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Docker Build Backend
+        run: docker build -t ouicheffe-backend ./backend
+
+#-t ouicheffe-backend : tag du conteneur
+# ./backend : chemin du Dockerfile
+
