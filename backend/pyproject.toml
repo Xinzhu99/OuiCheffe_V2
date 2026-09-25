@@ -27,3 +27,12 @@ build-backend = "uv_build"
 dev = [
     "faker>=40.39.0",
 ]
+
+[tool.pylint."MESSAGES CONTROL"]
+disable = [
+    "missing-module-docstring",
+    "missing-class-docstring",
+    "missing-function-docstring",
+    "too-few-public-methods",
+    "invalid-name",
+]

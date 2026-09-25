@@ -1,9 +1,11 @@
 name: Pylint
 
-on: [push]
+# ← QUAND le workflow se déclenche (l'événement)
+on: [push]          
 
 jobs:
-  build:
+ # NOM choisi pour ce job
+  lint:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -18,6 +20,8 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install pylint
+        pip install ./backend     
+        pip install faker
     - name: Analysing the code with pylint
       run: |
-        pylint $(git ls-files '*.py')
+         pylint --rcfile=backend/pyproject.toml --fail-under=8 backend/src
