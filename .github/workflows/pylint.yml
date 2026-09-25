@@ -1,6 +1,6 @@
 name: Pylint
 
-# ← QUAND le workflow se déclenche (l'événement)
+# quand le workflow se déclenche (l'événement)
 on: [push]          
 
 jobs:
