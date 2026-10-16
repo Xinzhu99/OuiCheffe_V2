@@ -1,7 +1,11 @@
 import os
 from dotenv import load_dotenv
-from fastapi import FastAPI
+from fastapi import FastAPI, Depends
 from fastapi.middleware.cors import CORSMiddleware
+from .database import get_db
+from sqlalchemy.orm import Session
+from .models import Recipe
+from .schemas import RecipeOut
 
 load_dotenv()
 
@@ -19,7 +23,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-@app.get("/")
-def read_root():
-    return {"Hello": "World"}   
-    
+
+@app.get("/recipes", response_model=list[RecipeOut])
+def read_recipes(db: Session = Depends(get_db)):
+    return db.query(Recipe).all()

@@ -1,6 +1,6 @@
 from fastapi_users.db import SQLAlchemyBaseUserTable
 from sqlalchemy import ForeignKey, Integer, String, Boolean
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 from .database import Base
 from typing import Optional
 import enum
@@ -65,6 +65,7 @@ class Recipe(Base):
     tag_id: Mapped[int] = mapped_column(ForeignKey("tags.id"))
     servings: Mapped[int]
     image_url: Mapped[Optional[str]]
+    tag: Mapped["Tag"] = relationship()
 
 class RecipeIngredient(Base):
     __tablename__ = "recipe_ingredients"
