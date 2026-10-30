@@ -16,9 +16,5 @@ engine = create_engine(DATABASE_URL, pool_pre_ping=True)
 # fabrique de sessions
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-# la classe mère de tous les modèles
+
 Base = declarative_base()
-
-
-
- 
