@@ -1,0 +1,16 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python Debugger: FastAPI",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "uvicorn",
+            "args": ["ouicheffe_back.main:app",  "--log-level", "debug", "--reload"],
+            "cwd": "${workspaceFolder}/backend",
+            "envFile": "${workspaceFolder}/backend/.env",
+            "python": "${workspaceFolder}/backend/.venv/bin/python",
+            "jinja": true
+        }
+    ]
+}

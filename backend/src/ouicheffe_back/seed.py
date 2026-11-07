@@ -3,8 +3,8 @@ Script de génération de données fictives pour développement local.
 Usage : uv run python -m ouicheffe_back.seed  
 """
 from faker import Faker
-from .database import SessionLocal
-from .models import Tag, IngredientCategory, Ingredient, Recipe, RecipeIngredient, Instruction
+from .db.database import SessionLocal
+from .models.models import Tag, IngredientCategory, Ingredient, Recipe, RecipeIngredient, Instruction
 
 fake = Faker("fr_FR")
 

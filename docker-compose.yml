@@ -12,17 +12,17 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
 
-  back:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
-    restart: always
-    env_file:
-      - ./backend/.env
-    ports:
-      - "8000:8000" #host:container, souvent le port du container est imposé par le framework utilisé, ici uvicorn impose 8000
-    depends_on:
-      - db
+#  back:
+#    build:
+#      context: ./backend
+#      dockerfile: Dockerfile
+#    restart: always
+#    env_file:
+#      - ./backend/.env
+#    ports:
+#      - "8000:8000" #host:container, souvent le port du container est imposé par le framework utilisé, ici uvicorn impose 8000
+#    depends_on:
+#      - db
 
 volumes:
   pgdata:
