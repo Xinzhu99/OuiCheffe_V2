@@ -7,8 +7,8 @@ from sqlalchemy import pool
 
 from alembic import context
 
-from ouicheffe_back.database import Base
-from ouicheffe_back import models  # noqa: F401 - registers models on Base.metadata
+from ouicheffe_back.db.database import Base
+from ouicheffe_back.models import models  # noqa: F401 - registers models on Base.metadata
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
