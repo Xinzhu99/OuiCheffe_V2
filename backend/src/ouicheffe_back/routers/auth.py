@@ -8,7 +8,7 @@ from ouicheffe_back.auth.tokens import generate_jwt_token
 from ouicheffe_back.schema.schema import RegisterUserSchema, UserResponse
 from ouicheffe_back.utils.exceptions import UserAlreadyExistsException
 from ouicheffe_back.core.config import settings
-from ouicheffe_back.utils.exceptions import CredentialsException, InvalidCredentialsException, UserAlreadyExistsException
+from ouicheffe_back.utils.exceptions import CredentialsException, UserAlreadyExistsException
 
 
 auth_router = APIRouter(prefix="/auth", tags=["auth"])

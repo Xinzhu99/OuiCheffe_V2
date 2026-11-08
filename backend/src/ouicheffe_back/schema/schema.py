@@ -57,16 +57,12 @@ class UserResponse(BaseModel):
     is_active: bool
 
 
-class RecipeResponse(BaseModel):
+class RecipesResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
     id: int
     name: str
     prep_time: int
     servings: int
-    image_url: str
-    class Tag:
-        model_config = ConfigDict(from_attributes=True)
-
-        id: int
-        name: str
+    image_url: str | None = None   # nullable dans le modèle
+    
