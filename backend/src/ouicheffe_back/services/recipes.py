@@ -10,6 +10,7 @@ class RecipesService:
 
     async def get_all_recipes(self) -> list[Recipe]:
         return await self.recipe_repo.get_all_recipes()
+    
 
 
 async def get_recipe_service(recipe_repo: RecipesRepository = Depends(get_recipe_repository)) -> RecipesService:
