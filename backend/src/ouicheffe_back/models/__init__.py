@@ -5,6 +5,7 @@ from .models import (
     Ingredient,
     IngredientCategory,
     Instruction,
+    RecipeTag,
     Recipe,
     RecipeIngredient,
     SelectedRecipe,

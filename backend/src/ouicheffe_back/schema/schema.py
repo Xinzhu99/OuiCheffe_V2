@@ -1,4 +1,5 @@
 from enum import Enum
+from typing import Optional
 from pydantic import BaseModel
 from pydantic import BaseModel, ConfigDict, EmailStr, Field
 
@@ -56,6 +57,11 @@ class UserResponse(BaseModel):
     brigade_id: int
     is_active: bool
 
+class TagResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+    id: int
+    name: str 
 
 class RecipesResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)
@@ -65,4 +71,5 @@ class RecipesResponse(BaseModel):
     prep_time: int
     servings: int
     image_url: str | None = None   # nullable dans le modèle
+    tags: Optional[list[TagResponse]] 
     
