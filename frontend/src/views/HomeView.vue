@@ -2,6 +2,7 @@
 import { getRecipes } from '../api/recipes.js'
 import { ref, onMounted } from 'vue'
 import RecipeCard from '../components/RecipeCard.vue' 
+import TagsBar from '../components/TagsBar.vue'  
 
 const recipes = ref([])
 const loading = ref(true)
@@ -22,6 +23,9 @@ onMounted(async () => {
   <div class="px-4 py-6">
     <h1 class="font-display text-[34px] italic leading-[1.1]">Bonjour !</h1>
     <p class="mt-1 text-muted-foreground">De quoi vous avez envie ?</p>
+    
+
+    <TagsBar/>
 
     <section class="mt-4">
         <p v-if="loading">Chargement...</p>

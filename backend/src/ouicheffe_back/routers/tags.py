@@ -9,6 +9,6 @@ tag_router = APIRouter(
     tags=["tags"],
 )
 
-@tag_router.get("/",response_model=list[TagResponse])
+@tag_router.get("",response_model=list[TagResponse])
 async def get_tags(service: TagsService = Depends(get_tag_service)):
     return await service.get_all_tags()
