@@ -8,8 +8,9 @@ class RecipesService:
     def __init__(self, recipe_repo: RecipesRepository):
         self.recipe_repo = recipe_repo
 
-    async def get_all_recipes(self) -> list[Recipe]:
-        return await self.recipe_repo.get_all_recipes()
+    async def get_all_recipes(self, tag_id: int |None = None) -> list[Recipe]:
+        return await self.recipe_repo.get_all_recipes(tag_id)
+
     
 
 
