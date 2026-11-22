@@ -70,6 +70,7 @@ class Recipe(Base):
     tags: Mapped[list["Tag"]] = relationship(secondary="recipe_tags")
     servings: Mapped[int]
     image_url: Mapped[Optional[str]]
+    instructions: Mapped[list["Instruction"]] = relationship()
 
 class RecipeIngredient(Base):
     __tablename__ = "recipe_ingredients"
