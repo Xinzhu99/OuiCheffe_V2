@@ -7,6 +7,7 @@ from ouicheffe_back.routers.auth import auth_router
 from ouicheffe_back.routers.users import user_router
 from ouicheffe_back.routers.home import home_router
 from ouicheffe_back.routers.tags import tag_router
+from ouicheffe_back.routers.recipes import recipe_router
 
 app = FastAPI()
 
@@ -26,6 +27,7 @@ app.include_router(auth_router)
 app.include_router(user_router)
 app.include_router(home_router)
 app.include_router(tag_router)
+app.include_router(recipe_router)
 
 if __name__ == "__main__":
     uvicorn.run('ouicheffe_back.main:app', host=settings.HOST, port=settings.PORT, reload=settings.RELOAD)
