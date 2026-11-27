@@ -1,14 +1,18 @@
-from fastapi import APIRouter, Depends, HTTPException, status
-from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy import text
-from ouicheffe_back.schema.schema import TagResponse
-from ouicheffe_back.services.tags import TagsService, get_tag_service
+from fastapi import APIRouter, Depends, HTTPException, status   # ✏️ HTTPException + status
+from ouicheffe_back.schema.schema import RecipeDetailsResponse
+from ouicheffe_back.services.recipe_details import RecipeDetailsService, get_recipe_details_service
 
 recipe_router = APIRouter(
-    prefix="/recipes/:id",
-    tags=["recipe-detail"],
+    prefix="/recipe",
+    tags=["recipe-details"],
 )
 
-@recipe_router.get("",response_model=list[TagResponse])
-async def get_recipe(service: TagsService = Depends(get_tag_service)):
-    return await service.get_all_tags()
+@recipe_router.get("/{recipe_id}", response_model=RecipeDetailsResponse)   
+async def get_recipe_details(
+    recipe_id: int,                    
+    service: RecipeDetailsService = Depends(get_recipe_details_service),
+):
+    recipe = await service.get_recipe(recipe_id)
+    if recipe is None:                  # ✏️ recette introuvable → 404 au lieu d'une erreur 500
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Recette introuvable")
+    return recipe
