@@ -72,4 +72,36 @@ class RecipesResponse(BaseModel):
     servings: int
     image_url: str | None = None   # nullable dans le modèle
     tags: Optional[list[TagResponse]] 
-    
+
+class InstructionResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+    id: int
+    step: int
+    instruction: str
+
+class IngredientResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+    id: int
+    name: str
+    unit: str
+
+class RecipeIngredientResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+    quantity: float
+    ingredient: IngredientResponse
+
+ 
+class RecipeDetailsResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+    id: int
+    name: str
+    prep_time: int
+    servings: int
+    image_url: str | None = None   # nullable dans le modèle
+    tags: Optional[list[TagResponse]] 
+    instructions: list[InstructionResponse]
+    ingredients: list[RecipeIngredientResponse]

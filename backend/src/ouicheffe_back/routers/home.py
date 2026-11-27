@@ -12,6 +12,7 @@ home_router = APIRouter(
 @home_router.get("/", response_model=list[RecipesResponse])
 async def get_recipes(
     tag_id: int | None = None,
+    search: str | None = None,
     service: RecipesService = Depends(get_recipe_service)
     ):
-    return await service.get_all_recipes(tag_id)
+    return await service.get_all_recipes(tag_id, search)

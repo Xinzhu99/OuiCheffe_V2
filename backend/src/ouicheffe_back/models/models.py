@@ -70,6 +70,8 @@ class Recipe(Base):
     tags: Mapped[list["Tag"]] = relationship(secondary="recipe_tags")
     servings: Mapped[int]
     image_url: Mapped[Optional[str]]
+    instructions: Mapped[list["Instruction"]] = relationship()
+    ingredients: Mapped[list["RecipeIngredient"]] = relationship()
 
 class RecipeIngredient(Base):
     __tablename__ = "recipe_ingredients"
@@ -78,6 +80,7 @@ class RecipeIngredient(Base):
     recipe_id: Mapped[int] = mapped_column(ForeignKey("recipes.id"))
     ingredient_id: Mapped[int] = mapped_column(ForeignKey("ingredients.id"))
     quantity: Mapped[float]
+    ingredient: Mapped[Ingredient] = relationship()
 
 class ShoppingList(Base):
     __tablename__ = "shopping_lists"
